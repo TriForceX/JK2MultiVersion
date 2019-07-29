@@ -1322,7 +1322,10 @@ static	void R_LoadSurfaces( lump_t *surfs, lump_t *verts, lump_t *indexLump ) {
 
 	in = (dsurface_t *)(fileBase + surfs->fileofs);
 	if (surfs->filelen % sizeof(*in))
-		ri.Error (ERR_DROP, "LoadMap: funny lump size in %s",s_worldData.name);
+	{
+		// ri.Error(ERR_DROP, "LoadMap: funny lump size in %s", s_worldData.name);
+		surfs->filelen -= (surfs->filelen % sizeof(*in)); // Tr!Force: [SPMaps] Error patch
+	}
 	count = surfs->filelen / sizeof(*in);
 
 	dv = (mapVert_t *)(fileBase + verts->fileofs);
@@ -1389,7 +1392,10 @@ static	void R_LoadSubmodels( lump_t *l ) {
 
 	in = (dmodel_t *)(fileBase + l->fileofs);
 	if (l->filelen % sizeof(*in))
-		ri.Error (ERR_DROP, "LoadMap: funny lump size in %s",s_worldData.name);
+	{
+		// ri.Error (ERR_DROP, "LoadMap: funny lump size in %s",s_worldData.name);
+		l->filelen -= (l->filelen % sizeof(*in)); // Tr!Force: [SPMaps] Error patch
+	}
 	count = l->filelen / sizeof(*in);
 
 	s_worldData.bmodels = out = (bmodel_t *)ri.Hunk_Alloc( count * sizeof(*out), h_low );
@@ -1529,7 +1535,10 @@ static	void R_LoadShaders( lump_t *l ) {
 
 	in = (dshader_t *)(fileBase + l->fileofs);
 	if (l->filelen % sizeof(*in))
-		ri.Error (ERR_DROP, "LoadMap: funny lump size in %s",s_worldData.name);
+	{
+		// ri.Error (ERR_DROP, "LoadMap: funny lump size in %s",s_worldData.name);
+		l->filelen -= (l->filelen % sizeof(*in)); // Tr!Force: [SPMaps] Error patch
+	}
 	count = l->filelen / sizeof(*in);
 	out = (dshader_t *)ri.Hunk_Alloc ( count*sizeof(*out), h_low );
 
@@ -1558,7 +1567,10 @@ static	void R_LoadMarksurfaces (lump_t *l)
 
 	in = (int *)(fileBase + l->fileofs);
 	if (l->filelen % sizeof(*in))
-		ri.Error (ERR_DROP, "LoadMap: funny lump size in %s",s_worldData.name);
+	{
+		// ri.Error (ERR_DROP, "LoadMap: funny lump size in %s",s_worldData.name);
+		l->filelen -= (l->filelen % sizeof(*in)); // Tr!Force: [SPMaps] Error patch
+	}
 	count = l->filelen / sizeof(*in);
 	out = (struct msurface_s **)ri.Hunk_Alloc ( count*sizeof(*out), h_low);
 
@@ -1587,7 +1599,10 @@ static	void R_LoadPlanes( lump_t *l ) {
 
 	in = (dplane_t *)(fileBase + l->fileofs);
 	if (l->filelen % sizeof(*in))
-		ri.Error (ERR_DROP, "LoadMap: funny lump size in %s",s_worldData.name);
+	{
+		// ri.Error(ERR_DROP, "LoadMap: funny lump size in %s", s_worldData.name);
+		l->filelen -= (l->filelen % sizeof(*in)); // Tr!Force: [SPMaps] Error patch
+	}
 	count = l->filelen / sizeof(*in);
 	out = (struct cplane_s *)ri.Hunk_Alloc ( count*2*sizeof(*out), h_low);
 
@@ -1631,7 +1646,8 @@ static	void R_LoadFogs( lump_t *l, lump_t *brushesLump, lump_t *sidesLump ) {
 
 	fogs = (dfog_t *)(fileBase + l->fileofs);
 	if (l->filelen < 0 || l->filelen % sizeof(*fogs)) {
-		ri.Error (ERR_DROP, "LoadMap: funny lump size in %s",s_worldData.name);
+		// ri.Error (ERR_DROP, "LoadMap: funny lump size in %s",s_worldData.name);
+		l->filelen -= (l->filelen % sizeof(*fogs)); // Tr!Force: [SPMaps] Error patch
 	}
 	count = l->filelen / sizeof(*fogs);
 
@@ -1950,7 +1966,8 @@ static void RE_LoadWorldMap_Actual( const char *name ) {
 	byte		*startMarker;
 
 	if ( tr.worldMapLoaded ) {
-		ri.Error( ERR_DROP, "ERROR: attempted to redundantly load world map" );
+		// ri.Error( ERR_DROP, "ERROR: attempted to redundantly load world map" );
+		return; // Tr!Force: [SPMaps] Error patch
 	}
 
 	// set default sun direction to be used if it isn't

@@ -23,7 +23,7 @@ typedef unsigned int glIndex_t;
 
 #define	MAX_SHADERS				16384 // 14 bit, matching jka
 
-#define MAX_SHADER_STATES 2048
+#define MAX_SHADER_STATES 4096 // Tr!Force: [SPMaps] Increased limit
 #define MAX_STATES_PER_SHADER 32
 #define MAX_STATE_NAME 32
 
@@ -641,10 +641,10 @@ typedef struct drawSurf_s {
 	surfaceType_t		*surface;		// any of surface*_t
 } drawSurf_t;
 
-#define	MAX_FACE_POINTS		64
+#define	MAX_FACE_POINTS		128 // Tr!Force: [SPMaps] Increased limit
 
-#define	MAX_PATCH_SIZE		32			// max dimensions of a patch mesh in map file
-#define	MAX_GRID_SIZE		65			// max dimensions of a grid mesh in memory
+#define	MAX_PATCH_SIZE		128			// max dimensions of a patch mesh in map file // Tr!Force: [SPMaps] Increased limit
+#define	MAX_GRID_SIZE		129			// max dimensions of a grid mesh in memory // Tr!Force: [SPMaps] Increased limit
 
 // when cgame directly specifies a polygon, it becomes a srfPoly_t
 // as soon as it is called
@@ -913,12 +913,12 @@ void		R_Modellist_f (void);
 //====================================================
 extern	refimport_t		ri;
 
-#define	MAX_DRAWIMAGES			2048
-#define	MAX_LIGHTMAPS			256
+#define	MAX_DRAWIMAGES			4096 // Tr!Force: [SPMaps] Increased limit
+#define	MAX_LIGHTMAPS			2048 // Tr!Force: [SPMaps] Increased limit
 #define	MAX_SKINS				1024
 
 
-#define	MAX_DRAWSURFS			0x10000
+#define	MAX_DRAWSURFS			0x40000 // Tr!Force: [SPMaps] Increased limit
 #define	DRAWSURF_MASK			(MAX_DRAWSURFS-1)
 
 /*
@@ -1835,8 +1835,8 @@ typedef enum {
 // these are sort of arbitrary limits.
 // the limits apply to the sum of all scenes in a frame --
 // the main view, all the 3D icons, etc
-#define	MAX_POLYS		600
-#define	MAX_POLYVERTS	3000
+#define	MAX_POLYS		4096 // Tr!Force: [SPMaps] Increased limit
+#define	MAX_POLYVERTS	16384 // Tr!Force: [SPMaps] Increased limit
 
 // all of the information needed by the back end must be
 // contained in a backEndData_t.  This entire structure is
