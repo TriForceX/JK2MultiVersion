@@ -39,7 +39,7 @@ properly.
 */
 
 
-#define	MAX_FACETS			1024
+#define	MAX_FACETS			2048 // Tr!Force: [SPMaps] Increased limit
 #define	MAX_PATCH_PLANES	4096 // doubled in jk2mv
 
 typedef struct {

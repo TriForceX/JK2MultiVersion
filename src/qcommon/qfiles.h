@@ -7,7 +7,7 @@
 //
 
 // surface geometry should not exceed these limits
-#define	SHADER_MAX_VERTEXES	1000
+#define	SHADER_MAX_VERTEXES	2000 // Tr!Force: [SPMaps] Increased limit
 #define	SHADER_MAX_INDEXES	(6*SHADER_MAX_VERTEXES)
 
 
@@ -94,12 +94,12 @@ typedef struct _TargaHeader {
 
 // limits
 #define MD3_MAX_LODS		3
-#define	MD3_MAX_TRIANGLES	8192	// per surface
-#define MD3_MAX_VERTS		4096	// per surface
+#define	MD3_MAX_TRIANGLES	32768	// per surface // Tr!Force: [SPMaps] Increased limit
+#define MD3_MAX_VERTS		32768	// per surface // Tr!Force: [SPMaps] Increased limit
 #define MD3_MAX_SHADERS		256		// per surface
-#define MD3_MAX_FRAMES		1024	// per model
+#define MD3_MAX_FRAMES		2048	// per model // Tr!Force: [SPMaps] Increased limit
 #define	MD3_MAX_SURFACES	48		// per model
-#define MD3_MAX_TAGS		16		// per frame
+#define MD3_MAX_TAGS		64		// per frame // Tr!Force: [SPMaps] Increased limit
 
 // vertex scales
 #define	MD3_XYZ_SCALE		(1.0f/64)
@@ -296,29 +296,29 @@ typedef struct {
 
 // there shouldn't be any problem with increasing these values at the
 // expense of more memory allocation in the utilities
-#define	MAX_MAP_MODELS			0x400
-#define	MAX_MAP_BRUSHES			0x8000
-#define	MAX_MAP_ENTITIES		0x800
-#define	MAX_MAP_ENTSTRING		0x40000
-#define	MAX_MAP_SHADERS			0x400
+#define	MAX_MAP_MODELS			0x800 // Tr!Force: [SPMaps] Increased limit
+#define	MAX_MAP_BRUSHES			0xF000 // Tr!Force: [SPMaps] Increased limit
+#define	MAX_MAP_ENTITIES		0xF1000 // Tr!Force: [SPMaps] Increased limit
+#define	MAX_MAP_ENTSTRING		0x80000 // Tr!Force: [SPMaps] Increased limit
+#define	MAX_MAP_SHADERS			0x800 // Tr!Force: [SPMaps] Increased limit
 
-#define	MAX_MAP_AREAS			0x100	// MAX_MAP_AREA_BYTES in q_shared must match!
-#define	MAX_MAP_FOGS			0x100
-#define	MAX_MAP_PLANES			0x20000
-#define	MAX_MAP_NODES			0x20000
-#define	MAX_MAP_BRUSHSIDES		0x20000
-#define	MAX_MAP_LEAFS			0x20000
-#define	MAX_MAP_LEAFFACES		0x20000
-#define	MAX_MAP_LEAFBRUSHES		0x40000
-#define	MAX_MAP_PORTALS			0x20000
-#define	MAX_MAP_LIGHTING		0x800000
-#define	MAX_MAP_LIGHTGRID		65535
-#define	MAX_MAP_LIGHTGRID_ARRAY	0x100000
-#define	MAX_MAP_VISIBILITY		0x600000
+#define	MAX_MAP_AREAS			0x200	// MAX_MAP_AREA_BYTES in q_shared must match! // Tr!Force: [SPMaps] Increased limit
+#define	MAX_MAP_FOGS			0x200 // Tr!Force: [SPMaps] Increased limit
+#define	MAX_MAP_PLANES			0x40000 // Tr!Force: [SPMaps] Increased limit
+#define	MAX_MAP_NODES			0x40000 // Tr!Force: [SPMaps] Increased limit
+#define	MAX_MAP_BRUSHSIDES		0x40000 // Tr!Force: [SPMaps] Increased limit
+#define	MAX_MAP_LEAFS			0x40000 // Tr!Force: [SPMaps] Increased limit
+#define	MAX_MAP_LEAFFACES		0x40000 // Tr!Force: [SPMaps] Increased limit
+#define	MAX_MAP_LEAFBRUSHES		0x80000 // Tr!Force: [SPMaps] Increased limit
+#define	MAX_MAP_PORTALS			0x40000 // Tr!Force: [SPMaps] Increased limit
+#define	MAX_MAP_LIGHTING		0xF00000 // Tr!Force: [SPMaps] Increased limit
+#define	MAX_MAP_LIGHTGRID		(65535*2) // Tr!Force: [SPMaps] Increased limit
+#define	MAX_MAP_LIGHTGRID_ARRAY	0x500000 // Tr!Force: [SPMaps] Increased limit
+#define	MAX_MAP_VISIBILITY		0xB00000 // Tr!Force: [SPMaps] Increased limit
 
-#define	MAX_MAP_DRAW_SURFS	0x20000
-#define	MAX_MAP_DRAW_VERTS	0x80000
-#define	MAX_MAP_DRAW_INDEXES	0x80000
+#define	MAX_MAP_DRAW_SURFS	0x80000 // Tr!Force: [SPMaps] Increased limit
+#define	MAX_MAP_DRAW_VERTS	0xF0000 // Tr!Force: [SPMaps] Increased limit
+#define	MAX_MAP_DRAW_INDEXES	0xF0000 // Tr!Force: [SPMaps] Increased limit
 
 
 // key / value pair sizes in the entities lump
